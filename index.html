@@ -10,8 +10,8 @@
     <script src="levels.js"></script>
     <script src="game.js"></script>
     <script>
-        runGame(GAME_LEVELS, DOMDisplay)
-        // runGame(GAME_LEVELS, CanvasDisplay)
+        let display = new DOMDisplay(document.body, simpleLevel);
+            display.syncState(State.start(simpleLevel));
     </script>    
 </body>
 </html>

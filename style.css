@@ -1,42 +1,46 @@
-/* Level style */
-
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .background { 
   background: rgb(52, 166, 251);
   table-layout: fixed;
   border-spacing: 0;
 }
 .background td { 
-  padding: 0;                     
+  padding: 0;
 }
 .lava { 
-  background: rgb(255, 81, 42); 
+  background: rgb(255, 100, 100); 
 }
 .wall { 
-  background: white;
+  background: white;             
 }
 
-/* Char styles  */
-
-.actor {
-  position: absolute;
+.actor { 
+  position: absolute;            
 }
-.coin {
+.coin { 
   background: rgb(241, 229, 89); 
+  border: 1px solid black;
+  border-radius: 50%;
 }
 .player { 
-  background: rgb(64, 64, 64);   
+  background: rgb(212, 255, 0);   
+  border-radius: 5px;
+}
+
+.lost .player {
+  background: rgb(52, 52, 52);
+}
+.won .player {
+  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
 }
 
 .game {
   overflow: hidden;
-  max-width: 600px;
-  max-height: 450px;
-  position: relative;
-}
-
-.lost .player {
-  background: rgb(160, 64, 64);
-}
-.won .player {
-  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+  max-width: 100%;
+  max-height: auto;
+  position: absolute;
 }
