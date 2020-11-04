@@ -1,5 +1,4 @@
 
-
 // reading a level 
 
 class Level {
@@ -192,3 +191,4 @@ DOMDisplay.prototype.scrollPlayerIntoView = function(state) {
     this.dom.scrollTop = center.y + margin - height;
   }
 };
+
