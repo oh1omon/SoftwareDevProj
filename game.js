@@ -328,6 +328,8 @@ Player.prototype.update = function(time, state, keys) {
     return new Player(pos, new Vec(xSpeed, ySpeed));
 };
 
+//******** Player controls ************/
+
 // Key handler for keeping the control keys "pressed" for continuous movement
 function trackKeys(keys) {
     let down = Object.create(null);
