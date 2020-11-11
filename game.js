@@ -345,3 +345,90 @@ function trackKeys(keys) {
 };
 
 const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "Space"]);
+
+//////////////////////////////////// running / pausing the game and game over //////////////////////////////////
+
+// call runAnimation --> give it a function with a time difference as argument and draw a single frame
+// When frame function return FALSE --> animation stops
+function runAnimation(frameFunc) {
+    let lastTime = null;
+    function frame(time) {
+      if (lastTime != null) {
+        let timeStep = Math.min(time - lastTime, 100) / 1000;
+        if (frameFunc(timeStep) === false) return;
+      }
+      lastTime = time;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  
+  // runLevel function takes a level object and display constructor and returns a promise
+  function runLevel(level, Display) {
+    let display = new Display(document.body, level);
+    let state = State.start(level);
+    let ending = 1;
+  // added to exercises
+    let running = "yes";
+  // added to exercises
+    return new Promise(resolve => {
+      function escHandler(event) {
+        if (event.key != "Escape") return;
+        event.preventDefault();
+        if (running == "no") {
+          running = "yes";
+          runAnimation(frame);
+        } else if (running == "yes") {
+          running = "pausing";
+        } else {
+          running = "yes";
+        }
+      }
+  // added to exercises
+      window.addEventListener("keydown", escHandler);
+      let arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
+  
+      function frame(time) {
+        if (running == "pausing") {
+          running = "no";
+          return false;
+        }
+      
+      // runAnimation(time => {
+      state = state.update(time, arrowKeys);
+      display.syncState(state);
+        if (state.status == "playing") {
+          return true;
+        } else if (ending > 0) {
+          ending -= time;
+          return true;
+        } else {
+          display.clear();
+          window.removeEventListener("keydown", escHandler);
+          arrowKeys.unregister();
+          resolve(state.status);
+          return false;
+        }
+      }
+      runAnimation(frame);
+    });
+  }
+  
+  // if player dies --> restart current level
+  // if level finished --> move to next level
+  async function runGame(plans, Display) {
+    let lives = 5;
+    for (let level = 0; level < plans.length && lives > 0;) {
+      console.log(`Level ${level + 1}, lives: ${lives}`);
+      let status = await runLevel(new Level(plans[level]), Display);
+      if (status == "won") level++;
+      else lives--;
+    }
+    if (lives > 0) {
+      console.log("You're better than I thought.");
+    } else {
+      console.log("You're simply just horrible at this.");
+    }
+  }
+  
+//////////////////////////////////// Ending this part: running / pausing the game and game over //////////////////////////////////
