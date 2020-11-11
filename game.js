@@ -1,5 +1,4 @@
 
-
 // reading a level 
 
 class Level {
@@ -363,15 +362,14 @@ function runAnimation(frameFunc) {
     }
     requestAnimationFrame(frame);
   }
-  
-  // runLevel function takes a level object and display constructor and returns a promise
+
+// runLevel function takes a level object and display constructor and returns a promise
   function runLevel(level, Display) {
     let display = new Display(document.body, level);
     let state = State.start(level);
     let ending = 1;
-  // added to exercises
     let running = "yes";
-  // added to exercises
+
     return new Promise(resolve => {
       function escHandler(event) {
         if (event.key != "Escape") return;
@@ -385,19 +383,17 @@ function runAnimation(frameFunc) {
           running = "yes";
         }
       }
-  // added to exercises
       window.addEventListener("keydown", escHandler);
       let arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
-  
+
       function frame(time) {
         if (running == "pausing") {
           running = "no";
           return false;
         }
-      
-      // runAnimation(time => {
-      state = state.update(time, arrowKeys);
-      display.syncState(state);
+
+        state = state.update(time, arrowKeys);
+        display.syncState(state);
         if (state.status == "playing") {
           return true;
         } else if (ending > 0) {
@@ -414,24 +410,40 @@ function runAnimation(frameFunc) {
       runAnimation(frame);
     });
   }
-  
-  // if player dies --> restart current level
-  // if level finished --> move to next level
-  async function runGame(plans, Display) {
-    let lives = 5;
-    for (let level = 0; level < plans.length && lives > 0;) {
-      console.log(`Level ${level + 1}, lives: ${lives}`);
-      let status = await runLevel(new Level(plans[level]), Display);
-      if (status == "won") level++;
-      else lives--;
+
+  function trackKeys(keys) {
+    let down = Object.create(null);
+    function track(event) {
+      if (keys.includes(event.key)) {
+        down[event.key] = event.type == "keydown";
+        event.preventDefault();
+      }
     }
-    if (lives > 0) {
-      console.log("You're better than I thought.");
-    } else {
-      console.log("You're simply just horrible at this.");
-    }
-    runGame(simpleLevel, Display);
+    window.addEventListener("keydown", track);
+    window.addEventListener("keyup", track);
+    down.unregister = () => {
+      window.removeEventListener("keydown", track);
+      window.removeEventListener("keyup", track);
+    };
+    return down;
   }
 
-  
-//////////////////////////////////// Ending this part: running / pausing the game and game over //////////////////////////////////
+// if player dies --> restart current level
+// if level finished --> move to next level
+  async function runGame(plans, Display) {
+      let lives = 5;
+    for (let level = 0; level < plans.length && lives > 0;) {
+        console.log(`Level ${level + 1}, lives: ${lives}`);
+        let status = await runLevel(new Level(plans[level]),
+                                    Display);
+        if (status == "won") level++;
+        else lives--;
+        }
+        if (lives > 0) {
+        console.log("You're not as bad as I thought.");
+        } else {
+        console.log("Wow, you're really not good at this.");
+        }
+    }
+
+runGame(GAME_LEVELS, DOMDisplay);
