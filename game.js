@@ -62,12 +62,12 @@ class Player {
   get type() { return "player"; }
 
   static create(pos) {
-    return new Player(pos.plus(new Vec(0, -0.5)),
+    return new Player(pos.plus(new Vec(0, -0.75)),
                       new Vec(0, 0));
   }
 }
 
-Player.prototype.size = new Vec(0.8, 1.5);
+Player.prototype.size = new Vec(1, 1.75);
 
 // Lava actor creation
 
