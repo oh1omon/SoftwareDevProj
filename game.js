@@ -430,8 +430,9 @@ function runAnimation(frameFunc) {
     } else {
       console.log("You're simply just horrible at this.");
     }
-    runGame(simpleLevel, Display);
   }
+
+
 
   
 //////////////////////////////////// Ending this part: running / pausing the game and game over //////////////////////////////////
