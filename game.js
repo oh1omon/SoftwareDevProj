@@ -1,7 +1,7 @@
 
 // reading a level 
 
-class Level {
+var Level = class Level {
   constructor(plan) {
     let rows = plan.trim().split("\n").map(l => [...l]);
     this.height = rows.length;
@@ -20,7 +20,7 @@ class Level {
   }
 }
 
-class State {
+var State = class State {
   constructor(level, actors, status) {
     this.level = level;
     this.actors = actors;
@@ -39,7 +39,7 @@ class State {
 
 // Implementing Actor objects ro represent the current position and state of a given moving element in the game
 
-class Vec {
+var Vec = class Vec {
   constructor(x, y) {
     this.x = x; this.y = y;
   }
@@ -53,7 +53,7 @@ class Vec {
 
 // Player actor
 
-class Player {
+var Player = class Player {
   constructor(pos, speed) {
     this.pos = pos;
     this.speed = speed;
@@ -62,16 +62,16 @@ class Player {
   get type() { return "player"; }
 
   static create(pos) {
-    return new Player(pos.plus(new Vec(0, -0.75)),
+    return new Player(pos.plus(new Vec(0, -1)),
                       new Vec(0, 0));
   }
 }
 
-Player.prototype.size = new Vec(1, 1.75);
+Player.prototype.size = new Vec(1, 1);
 
 // Lava actor creation
 
-class Lava {
+var Lava = class Lava {
   constructor(pos, speed, reset) {
     this.pos = pos;
     this.speed = speed;
@@ -95,7 +95,7 @@ Lava.prototype.size = new Vec(1, 1);
 
 // Coin actor creation
 
-class Coin {
+var Coin = class Coin {
   constructor(pos, basePos, wobble) {
     this.pos = pos;
     this.basePos = basePos;
@@ -139,7 +139,7 @@ function elt(name, attrs, ...children) {
   return dom;
 }
 
-class DOMDisplay {
+var DOMDisplay = class DOMDisplay {
   constructor(parent, level) {
     this.dom = elt("div", {class: "game"}, drawGrid(level));
     this.actorLayer = null;
@@ -149,7 +149,7 @@ class DOMDisplay {
   clear() { this.dom.remove(); }
 }
 
-const scale = 20;
+var scale = 20;
 
 function drawGrid(level) {
 return elt("table", {
@@ -214,7 +214,7 @@ Level.prototype.touches = function(pos, size, type) {
     var xStart = Math.floor(pos.x);
     var xEnd = Math.ceil(pos.x + size.x);
     var yStart = Math.floor(pos.y);
-    var yEnd = Math.ceil(pos.y + size);
+    var yEnd = Math.ceil(pos.y + size.y);
 
     for (var y = yStart; y < yEnd; y++) {
         for (var x = xStart; x < xEnd; x++) {
@@ -300,7 +300,7 @@ Coin.prototype.update = function(time) {
 // Player motion and regulations when the player hits a wall
 
 const playerXSpeed = 7;
-const gravity = 30;
+const gravity = 25;
 const jumpSpeed = 17;
 
 Player.prototype.update = function(time, state, keys) {
@@ -319,7 +319,7 @@ Player.prototype.update = function(time, state, keys) {
     if (!state.level.touches(movedY, this.size, "wall")) {
         pos = movedY;
     }
-    else if (keys.Space && ySpeed > 0) {
+    else if (keys.ArrowUp && ySpeed > 0) {
         ySpeed = -jumpSpeed;
     }
     else {
@@ -344,7 +344,7 @@ function trackKeys(keys) {
     return down;
 };
 
-const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "Space"]);
+const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
 
 //////////////////////////////////// running / pausing the game and game over //////////////////////////////////
 
@@ -446,4 +446,4 @@ function runAnimation(frameFunc) {
         }
     }
 
-runGame(GAME_LEVELS, DOMDisplay);
+// runGame(GAME_LEVELS, DOMDisplay);
