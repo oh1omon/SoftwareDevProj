@@ -1,3 +1,14 @@
+// let simpleLevelPlan = `
+// ......................
+// ..#................#..
+// ..#..............=.#..
+// ..#.........o.o....#..
+// ..#.@......#####...#..
+// ..#####............#..
+// ......#++++++++++++#..
+// ......##############..
+// ......................`;
+
 
 // reading a level 
 
@@ -59,7 +70,7 @@ class Player {
     this.speed = speed;
   }
 
-  get type() { return "player"; }
+  get type() { return "player" }
 
   static create(pos) {
     return new Player(pos.plus(new Vec(0, -0.75)),
@@ -67,7 +78,7 @@ class Player {
   }
 }
 
-Player.prototype.size = new Vec(1, 1.75);
+Player.prototype.size = new Vec(1, 1.75)
 
 // Lava actor creation
 
@@ -78,7 +89,7 @@ class Lava {
     this.reset = reset;
   }
 
-  get type() { return "lava"; }
+  get type() { return "lava" }
 
   static create(pos, ch) {
     if (ch == "=") {
@@ -102,7 +113,7 @@ class Coin {
     this.wobble = wobble;
   }
 
-  get type() { return "coin"; }
+  get type() { return "coin" }
 
   static create(pos) {
     let basePos = pos.plus(new Vec(0.2, 0.1));
@@ -119,7 +130,7 @@ const levelChars = {
   ".": "empty", "#": "wall", "+": "lava",
   "@": Player, "o": Coin,
   "=": Lava, "|": Lava, "v": Lava
-};
+}
 
 // creating a level instance
 
@@ -339,8 +350,12 @@ function trackKeys(keys) {
     }
     window.addEventListener("keydown", track);
     window.addEventListener("keyup", track);
+    down.unregister = () => {
+      window.removeEventListener("keydown", track);
+      window.removeEventListener("keyup", track);
+    };
     return down;
-};
+}
 
 const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "Space"]);
 
@@ -384,7 +399,7 @@ function runAnimation(frameFunc) {
       }
   // added to exercises
       window.addEventListener("keydown", escHandler);
-      let arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
+      let arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "Space"]);
   
       function frame(time) {
         if (running == "pausing") {
