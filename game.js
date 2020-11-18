@@ -206,8 +206,6 @@ DOMDisplay.prototype.scrollPlayerIntoView = function(state) {
 };
 
 
-
-
 //************* Motion and collision Part ******************/
 
 Level.prototype.touches = function(pos, size, type) {
