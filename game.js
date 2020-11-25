@@ -62,12 +62,12 @@ var Player = class Player {
   get type() { return "player"; }
 
   static create(pos) {
-    return new Player(pos.plus(new Vec(0, -1)),
+    return new Player(pos.plus(new Vec(0, -1.5)),
                       new Vec(0, 0));
   }
 }
 
-Player.prototype.size = new Vec(1, 1);
+Player.prototype.size = new Vec(1, 1.5);
 
 // Lava actor creation
 
@@ -433,7 +433,9 @@ function runAnimation(frameFunc) {
   async function runGame(plans, Display) {
       let lives = 5;
     for (let level = 0; level < plans.length && lives > 0;) {
-        console.log(`Level ${level + 1}, lives: ${lives}`);
+        document.getElementById('level').innerText = `Level ${level + 1}`;
+        document.getElementById('lives').innerText = `Lives: ${lives}`;        
+        document.getElementById('restart').innerText = 'restart game';
         let status = await runLevel(new Level(plans[level]),
                                     Display);
         if (status == "won") level++;
@@ -441,8 +443,14 @@ function runAnimation(frameFunc) {
         }
         if (lives > 0) {
         console.log("You're not as bad as I thought.");
+        document.getElementById('level').innerText = ``;
+        document.getElementById('lives').innerText = ``;
+        document.getElementById('restart').innerText = 'restart game';
+        document.getElementById('message').innerText = 'YOU ARE IMPROVING!';
         } else {
         console.log("Wow, you're really not good at this.");
+        document.getElementById('message').innerText = 'YOU SUCK!';
+        document.getElementById('restart').innerText = 'restart game';
         }
     }
 
