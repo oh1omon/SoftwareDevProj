@@ -62,12 +62,12 @@ var Player = class Player {
   get type() { return "player"; }
 
   static create(pos) {
-    return new Player(pos.plus(new Vec(0, -1.5)),
+    return new Player(pos.plus(new Vec(1, -0.75)),
                       new Vec(0, 0));
   }
 }
 
-Player.prototype.size = new Vec(1, 1.5);
+Player.prototype.size = new Vec(1, 1.75);
 
 // Lava actor creation
 
@@ -442,13 +442,11 @@ function runAnimation(frameFunc) {
         else lives--;
         }
         if (lives > 0) {
-        console.log("You're not as bad as I thought.");
         document.getElementById('level').innerText = ``;
         document.getElementById('lives').innerText = ``;
         document.getElementById('restart').innerText = 'restart game';
         document.getElementById('message').innerText = 'YOU ARE IMPROVING!';
         } else {
-        console.log("Wow, you're really not good at this.");
         document.getElementById('message').innerText = 'YOU SUCK!';
         document.getElementById('restart').innerText = 'restart game';
         }
