@@ -10,6 +10,7 @@
 // ......................`;
 
 
+
 // reading a level 
 
 class Level {
@@ -134,7 +135,7 @@ const levelChars = {
 
 // creating a level instance
 
-let simpleLevel = new Level(simpleLevelPlan);
+let simpleLevel = new Level(GAME_LEVELS[0]);
 // console.log(`${simpleLevel.width} by ${simpleLevel.height}`);
 // → 22 by 9
 
@@ -443,5 +444,8 @@ function runAnimation(frameFunc) {
       console.log("You're simply just horrible at this.");
     }
   }
+
+
+
   
 //////////////////////////////////// Ending this part: running / pausing the game and game over //////////////////////////////////
