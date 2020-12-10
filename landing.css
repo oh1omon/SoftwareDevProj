@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+}
+
+#wrapper {
+  background-color: #363636;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/*Settings and About*/
+.ext {
+  grid-row: 4;
+  grid-column: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 80%;
+}
+.settings,
+.about {
+  width: 6rem;
+  height: 3rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-right: 5px solid #000;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.15);
+}
+.settings {
+  background-color: #ec058e;
+}
+.settings img {
+  width: 28px;
+}
+.about {
+  background-color: #62bbc1;
+}
+.settings a,
+.about a {
+  height: 36px;
+  width: 36px;
+}
+
+/*Content*/
+.content {
+  grid-row: 2 / span 2;
+  grid-column: 2 / span 2;
+  background: rgb(75, 75, 75);
+  background: linear-gradient(
+    135deg,
+    rgba(75, 75, 75, 1) 0%,
+    rgba(107, 107, 107, 0) 100%
+  );
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.15);
+}
+
+.banner-container {
+  grid-column: 2 / span 3;
+  grid-row: 1 / span 3;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 72px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.banner {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+.button {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-family: inherit;
+  text-transform: uppercase;
+  background-color: #62bbc1;
+  color: #363636;
+  font-size: 64px;
+  border: 0;
+  outline: 0;
+  border-radius: 15px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.25);
+  transition: 300ms;
+  cursor: pointer;
+  width: 90%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.btn-inside {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button img {
+  height: 90px;
+}
+
+.score-container {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.score-container p {
+  font-size: 55px;
+}
+
+#score-count {
+  font-size: 144px;
+}
+
+.icon-container {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon-container img {
+  width: 36px;
+}
