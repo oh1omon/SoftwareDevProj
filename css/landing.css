@@ -7,6 +7,16 @@
 
 body {
   font-family: "Oswald", sans-serif;
+  background-color: #363636;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 50px;
+}
+
+#disNone {
+  display: none;
 }
 
 #wrapper {
@@ -27,6 +37,7 @@ body {
   justify-content: space-around;
   height: 80%;
 }
+
 .settings,
 .about {
   width: 6rem;
@@ -37,15 +48,19 @@ body {
   border-right: 5px solid #000;
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.15);
 }
+
 .settings {
   background-color: #ec058e;
 }
+
 .settings img {
   width: 28px;
 }
+
 .about {
   background-color: #62bbc1;
 }
+
 .settings a,
 .about a {
   height: 36px;
@@ -79,6 +94,7 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
+
 .banner {
   display: flex;
   flex-flow: column;
@@ -111,6 +127,7 @@ button {
   justify-content: space-around;
   align-items: center;
 }
+
 .btn-inside {
   width: 70%;
   display: flex;
@@ -151,4 +168,59 @@ button img {
 
 .icon-container img {
   width: 36px;
+}
+
+/*Actual game*/
+.game-overlay {
+}
+.background {
+  background: rgb(52, 166, 251);
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+.background td {
+  padding: 0;
+}
+
+.lava {
+  background: rgb(255, 100, 100);
+}
+
+.wall {
+  background: white;
+  border: 0.25px solid black;
+}
+
+.actor {
+  position: absolute;
+}
+
+.coin {
+  background: rgb(241, 229, 89);
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.player {
+  background: rgb(217, 0, 255);
+}
+
+.lost .player {
+  background: rgb(52, 52, 52);
+}
+
+.won .player {
+  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+}
+
+.game {
+  overflow: hidden;
+  /* max-width: 100%; */
+  /* max-height: auto; */
+  max-width: 800px;
+  max-height: 500px;
+  position: absolute;
+  margin: 10rem;
+  border: 2px solid black;
 }

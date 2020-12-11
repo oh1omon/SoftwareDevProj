@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Run for your life!</title>
-</head>
-<body>
+  </head>
+  <body>
     <section>
-        <h1 id="message">Run for your life!</h1>
-        <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">start game</button>
-        <h4 id="level"></h4>
-        <h4 id="lives"></h4>
-        <!-- <p>MESSAGE: <span id="message"></span></p> -->
+      <h1 id="message">Run for your life!</h1>
+      <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">
+        start game
+      </button>
+      <h4 id="level"></h4>
+      <h4 id="lives"></h4>
+      <!-- <p>MESSAGE: <span id="message"></span></p> -->
     </section>
     <!-- <div>        
         <p><span id="message"></span></p>
@@ -21,10 +23,9 @@
     <script src="levels.js"></script>
     <script src="game.js"></script>
     <script>
-        let display = new DOMDisplay(document.body, simpleLevel);
-            display.syncState(State.start(simpleLevel));
-            // runGame(GAME_LEVELS, DOMDisplay);
-            
-    </script>    
-</body>
+      let display = new DOMDisplay(document.body, simpleLevel);
+      display.syncState(State.start(simpleLevel));
+      // runGame(GAME_LEVELS, DOMDisplay);
+    </script>
+  </body>
 </html>
