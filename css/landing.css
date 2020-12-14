@@ -145,22 +145,57 @@ button img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.score-content {
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-flow: column;
   color: #fff;
   text-transform: uppercase;
+  position: relative;
 }
 
-.score-container p {
-  font-size: 55px;
+.score-container:after {
+  content: "";
+  position: absolute;
+  border-top: 3px solid #545454;
+  transform: rotate(45deg);
+  width: 12%;
 }
 
-#score-count {
-  font-size: 144px;
+#scores {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 100%;
+}
+#scores p {
+  font-size: 80px;
+}
+
+.score-content p {
+  font-size: 25px;
+}
+.align-start {
+  align-self: flex-start;
+}
+.align-end {
+  align-self: flex-end;
+}
+
+.icon-wrapper {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon-container {
-  grid-column: 1 / span 2;
-  grid-row: 3;
+  width: 80%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -168,6 +203,11 @@ button img {
 
 .icon-container img {
   width: 36px;
+}
+.spacer {
+  width: 0;
+  height: 4em;
+  border-right: 2px solid #545454;
 }
 
 /*Actual game*/
