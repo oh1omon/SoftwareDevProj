@@ -286,6 +286,9 @@ Lava.prototype.collide = function (state) {
 };
 
 Coin.prototype.collide = function (state) {
+  let coinSum = localStorage.getItem("coinScore");
+  coinSum++;
+  localStorage.setItem("coinScore", `${coinSum}`);
   let filtered = state.actors.filter((a) => a != this);
   let status = state.status;
   if (!filtered.some((a) => a.type == "coin")) status = "won";
@@ -491,3 +494,26 @@ const loadGame = () => {
   );
   display.syncState(State.start(simpleLevel));
 };
+
+(function () {
+  if (!localStorage.getItem("coinScore")) {
+    localStorage.setItem("coinScore", "0");
+  }
+  if (localStorage.getItem("coinScore") >= 1000) {
+    document.getElementById("coins").innerText = `${
+      localStorage.getItem("coinScore") / 1000
+    }K`;
+  } else if (localStorage.getItem("coinScore") >= 100) {
+    document.getElementById("coins").innerText = `${localStorage.getItem(
+      "coinScore"
+    )}`;
+  } else if (localStorage.getItem("coinScore") >= 10) {
+    document.getElementById("coins").innerText = `0${localStorage.getItem(
+      "coinScore"
+    )}`;
+  } else {
+    document.getElementById("coins").innerText = `00${localStorage.getItem(
+      "coinScore"
+    )}`;
+  }
+})();

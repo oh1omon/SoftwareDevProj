@@ -15,6 +15,10 @@ h1 {
   font-size: 50px;
 }
 
+h1 {
+  color: #fff;
+}
+
 #disNone {
   display: none;
 }
@@ -173,7 +177,7 @@ button img {
   width: 100%;
 }
 #scores p {
-  font-size: 80px;
+  font-size: 43px;
 }
 
 .score-content p {
