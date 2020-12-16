@@ -127,10 +127,12 @@ class Monster {
 
   get type () { return "monster"; }
   static create(pos) { return new Monster (pos.plus(new Vec (0, -1))); }
-  
+
+        
+
   update(time, state) {
         let player = state.player;
-        let speed = (.pos.x < this.pos.x ? -1 : 1) * time * monsterSpeed;
+        let speed = (player.pos.x < this.pos.x ? -1 : 1) * time * monsterSpeed;
         let newPos = new Vec(this.pos.x + speed, this.pos.y);
         if (state.level.touches(newPos, this.size, "wall")) 
           return this;
@@ -141,8 +143,6 @@ class Monster {
     let player = state.player;
     if (player.pos.y + player.size.y < this.pos.y + 0.5) {
       let filtered = state.actors.filter(a => a != this );
-      return new State(state.level, state.actors, state.status);
-    } else {
       return new State(state.level, state.actors, "lost");
     }
   }
