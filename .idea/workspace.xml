@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f7344591-c6f2-4ac0-875e-9197504ca015" name="Default Changelist" comment="Added and styled landing page" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1lPl7J4VEvuSZgY68Jmo2PSREM7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
+    <property name="ToolWindowProblems.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\artem\AppData\Roaming\npm\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\artem\Documents\SoftwareDevProj\css" />
+      <recent name="C:\Users\artem\Documents\SoftwareDevProj" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f7344591-c6f2-4ac0-875e-9197504ca015" name="Default Changelist" comment="" />
+      <created>1607506441535</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607506441535</updated>
+      <workItem from="1607506443462" duration="4706000" />
+      <workItem from="1607552007305" duration="1554000" />
+      <workItem from="1607553585671" duration="525000" />
+      <workItem from="1607554126481" duration="2198000" />
+      <workItem from="1607594557472" duration="28000" />
+      <workItem from="1607603970637" duration="2465000" />
+      <workItem from="1607634492874" duration="10370000" />
+      <workItem from="1607672244877" duration="132000" />
+      <workItem from="1607673244970" duration="29000" />
+      <workItem from="1607941154297" duration="3187000" />
+      <workItem from="1607986271200" duration="6355000" />
+      <workItem from="1608029767329" duration="611000" />
+      <workItem from="1608074695349" duration="4013000" />
+      <workItem from="1608107774684" duration="4923000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added and styled landing page">
+      <created>1607642487900</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607642487900</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added and styled landing page">
+      <created>1607672291971</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607672291971</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added some styles and two different scores(coins and bosses)">
+      <created>1607989115139</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607989115139</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added actual coin score functionality">
+      <created>1607992066916</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1607992066916</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Game start logic is now fine">
+      <created>1608078272021</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608078272021</updated>
+    </task>
+    <task id="LOCAL-00006" summary="destructured landing page code from game.js file to landing.js file">
+      <created>1608110912490</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608110912490</updated>
+    </task>
+    <task id="LOCAL-00007" summary="destructured landing page code from game.js file to landing.js file">
+      <created>1608112556850</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608112556850</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added and styled landing page" />
+    <MESSAGE value="added some styles and two different scores(coins and bosses)" />
+    <MESSAGE value="added actual coin score functionality" />
+    <MESSAGE value="Game start logic is now fine" />
+    <MESSAGE value="destructured landing page code from game.js file to landing.js file" />
+    <option name="LAST_COMMIT_MESSAGE" value="destructured landing page code from game.js file to landing.js file" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
