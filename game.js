@@ -1,3 +1,10 @@
+// sounds //
+let bgMusic = document.getElementById("bg-music");
+// let jumpSound = document.getElementById('boing');
+let coinSound = document.getElementById("coin-sound");
+// let winSound = document.getElementById('win-sound');
+let gameOverSound = document.getElementById("game-over");
+
 // reading a level
 
 var Level = class Level {
@@ -120,6 +127,40 @@ var Coin = class Coin {
 
 Coin.prototype.size = new Vec(0.6, 0.6);
 
+//Adding monsters
+const monsterSpeed = 1.5;
+
+class Monster {
+  constructor(pos) {
+    this.pos = pos;
+  }
+
+  get type() {
+    return "monster";
+  }
+  static create(pos) {
+    return new Monster(pos.plus(new Vec(0, -1)));
+  }
+
+  update(time, state) {
+    let player = state.player;
+    let speed = (player.pos.x < this.pos.x ? -1 : 1) * time * monsterSpeed;
+    let newPos = new Vec(this.pos.x + speed, this.pos.y);
+    if (state.level.touches(newPos, this.size, "wall")) return this;
+    else return new Monster(newPos);
+  }
+
+  collide(state) {
+    let player = state.player;
+    if (player.pos.y + player.size.y < this.pos.y + 0.5) {
+      let filtered = state.actors.filter((a) => a != this);
+      return new State(state.level, state.actors, "lost");
+    }
+  }
+}
+
+Monster.prototype.size = new Vec(1.2, 2);
+
 // level characters
 
 const levelChars = {
@@ -131,6 +172,7 @@ const levelChars = {
   "=": Lava,
   "|": Lava,
   v: Lava,
+  M: Monster,
 };
 
 // creating a level instance
@@ -286,6 +328,13 @@ Lava.prototype.collide = function (state) {
 };
 
 Coin.prototype.collide = function (state) {
+  // coin collection sounds
+  let getCoinSound = true;
+  if (getCoinSound) {
+    coinSound.currentTime = 0;
+    coinSound.play();
+  }
+  // coin collecting that goes to localStorage
   let coinSum = localStorage.getItem("coinScore");
   coinSum++;
   localStorage.setItem("coinScore", `${coinSum}`);
@@ -372,7 +421,7 @@ function trackKeys(keys) {
 
 const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
 
-//////////////////////////////////// running / pausing the game and game over //////////////////////////////////
+// running/pausing the game and game over
 
 // call runAnimation --> give it a function with a time difference as argument and draw a single frame
 // When frame function return FALSE --> animation stops
@@ -426,6 +475,12 @@ function runLevel(level, Display) {
 
       state = state.update(time, arrowKeys);
       display.syncState(state);
+      // add background music
+      if (state.status == "playing") {
+        bgMusic.play();
+      } else {
+        bgMusic.pause();
+      }
       if (state.status == "playing") {
         return true;
       } else if (ending > 0) {
@@ -440,8 +495,23 @@ function runLevel(level, Display) {
       }
     }
 
-    runAnimation(frame);
+    state = state.update(time, arrowKeys);
+    display.syncState(state);
+    if (state.status == "playing") {
+      return true;
+    } else if (ending > 0) {
+      ending -= time;
+      return true;
+    } else {
+      display.clear();
+      window.removeEventListener("keydown", escHandler);
+      arrowKeys.unregister();
+      resolve(state.status);
+      return false;
+    }
   });
+
+  runAnimation(frame);
 }
 
 function trackKeys(keys) {
@@ -452,36 +522,41 @@ function trackKeys(keys) {
       down[event.key] = event.type == "keydown";
       event.preventDefault();
     }
+
+    window.addEventListener("keydown", track);
+    window.addEventListener("keyup", track);
+    down.unregister = () => {
+      window.removeEventListener("keydown", track);
+      window.removeEventListener("keyup", track);
+    };
+    return down;
   }
 
-  window.addEventListener("keydown", track);
-  window.addEventListener("keyup", track);
-  down.unregister = () => {
-    window.removeEventListener("keydown", track);
-    window.removeEventListener("keyup", track);
-  };
-  return down;
+  // if player dies --> restart current level
+  // if level finished --> move to next level
+
+  async function runGame(plans, Display) {
+    let lives = 5;
+    for (let level = 0; level < plans.length && lives > 0; ) {
+      document.getElementById("level").innerText = `Level ${level + 1}`;
+      document.getElementById("lives").innerText = `Lives: ${lives}`;
+      // document.getElementById("restart").innerText = "restart game";
+      let status = await runLevel(new Level(plans[level]), Display);
+      if (status == "won") level++;
+      else lives--;
+    }
+    if (lives > 0) {
+      document.getElementById("level").innerText = ``;
+      document.getElementById("lives").innerText = ``;
+      // document.getElementById("restart").innerText = "restart game";
+      document.getElementById("message").innerText = "YOU ARE IMPROVING!";
+    } else {
+      document.getElementById("message").innerText = "YOU SUCK!";
+      // game over sound
+      gameOverSound.play();
+      // document.getElementById("restart").innerText = "restart game";
+    }
+  }
 }
 
-// if player dies --> restart current level
-// if level finished --> move to next level
-async function runGame(plans, Display) {
-  let lives = 5;
-  for (let level = 0; level < plans.length && lives > 0; ) {
-    document.getElementById("level").innerText = `Level ${level + 1}`;
-    document.getElementById("lives").innerText = `Lives: ${lives}`;
-    // document.getElementById("restart").innerText = "restart game";
-    let status = await runLevel(new Level(plans[level]), Display);
-    if (status == "won") level++;
-    else lives--;
-  }
-  if (lives > 0) {
-    document.getElementById("level").innerText = ``;
-    document.getElementById("lives").innerText = ``;
-    // document.getElementById("restart").innerText = "restart game";
-    document.getElementById("message").innerText = "YOU ARE IMPROVING!";
-  } else {
-    document.getElementById("message").innerText = "YOU SUCK!";
-    // document.getElementById("restart").innerText = "restart game";
-  }
-}
+// runGame(GAME_LEVELS, DOMDisplay);

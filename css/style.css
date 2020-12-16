@@ -10,15 +10,48 @@ body {
   justify-content: center;
   align-content: center;
   background-color: bisque;
+  font-family: "Gudea", sans-serif;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
   text-transform: uppercase;
-  font-size: 50px;
+  font-family: "Bangers", cursive;
+  letter-spacing: 1rem;
+  color: rgb(52, 166, 251);
+  text-shadow: 4px 4px rgb(255, 100, 100);
+  font-size: 4rem;
 }
 
 button {
+  margin: 2rem;
+  padding: 0.5rem 1rem;
   text-transform: uppercase;
+  border: none;
+  color: #333333;
+  background-color: rgb(241, 229, 89);
+  box-shadow: 2px 2px rgb(161, 153, 59);
+  font-family: "Gudea", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+}
+
+button:hover {
+  cursor: crosshair;
+  background-color: rgb(161, 153, 59);
+  color: #ffffff;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 section p {
@@ -38,7 +71,7 @@ section p {
 }
 .wall {
   background: white;
-  border: 0.25px solid black;
+  border: 0.5px solid black;
 }
 
 .actor {
@@ -67,6 +100,10 @@ section p {
   max-width: 800px;
   max-height: 500px;
   position: absolute;
-  margin: 10rem;
+  margin: 15rem;
   border: 2px solid black;
+}
+
+.monster {
+  background: darkred;
 }
