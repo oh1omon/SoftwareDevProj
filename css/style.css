@@ -25,32 +25,32 @@ section p {
   border-bottom: 4em;
 }
 
-.background { 
+.background {
   background: rgb(52, 166, 251);
   table-layout: fixed;
   border-spacing: 0;
 }
-.background td { 
+.background td {
   padding: 0;
 }
-.lava { 
-  background: rgb(255, 100, 100); 
+.lava {
+  background: rgb(255, 100, 100);
 }
-.wall { 
-  background: white;   
-  border: 0.25px solid black;          
+.wall {
+  background: white;
+  border: 0.25px solid black;
 }
 
-.actor { 
-  position: absolute;            
+.actor {
+  position: absolute;
 }
-.coin { 
-  background: rgb(241, 229, 89); 
+.coin {
+  background: rgb(241, 229, 89);
   border: 1px solid black;
   border-radius: 50%;
 }
-.player { 
-  background: rgb(217, 0, 255);   
+.player {
+  background: rgb(217, 0, 255);
 }
 
 .lost .player {
