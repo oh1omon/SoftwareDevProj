@@ -10,39 +10,80 @@ body {
   justify-content: center;
   align-content: center;
   background-color: bisque;
+  font-family: "Gudea", sans-serif;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
   text-transform: uppercase;
-  font-size: 50px;
+  font-family: "Bangers", cursive;
+  letter-spacing: 1rem;
+  color: rgb(52, 166, 251);
+  text-shadow: 4px 4px rgb(255, 100, 100);
+  font-size: 4rem;
 }
 
-.background { 
+button {
+  margin: 2rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  border: none;
+  color: #333333;
+  background-color: rgb(241, 229, 89);
+  box-shadow: 2px 2px rgb(161, 153, 59);
+  font-family: "Gudea", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+}
+
+button:hover {
+  cursor: crosshair;
+  background-color: rgb(161, 153, 59);
+  color: #ffffff;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+section p {
+  border-bottom: 4em;
+}
+
+.background {
   background: rgb(52, 166, 251);
   table-layout: fixed;
   border-spacing: 0;
 }
-.background td { 
+.background td {
   padding: 0;
 }
-.lava { 
-  background: rgb(255, 100, 100); 
+.lava {
+  background: rgb(255, 100, 100);
 }
-.wall { 
-  background: white;   
-  border: 0.5px solid black;          
+.wall {
+  background: white;
+  border: 0.5px solid black;
 }
 
-.actor { 
-  position: absolute;            
+.actor {
+  position: absolute;
 }
-.coin { 
-  background: rgb(241, 229, 89); 
+.coin {
+  background: rgb(241, 229, 89);
   border: 1px solid black;
   border-radius: 50%;
 }
-.player { 
-  background: rgb(217, 0, 255);   
+.player {
+  background: rgb(217, 0, 255);
 }
 
 .lost .player {
@@ -59,6 +100,10 @@ h1 {
   max-width: 800px;
   max-height: 500px;
   position: absolute;
-  margin: 4rem;
+  margin: 15rem;
   border: 2px solid black;
+}
+
+.monster {
+  background: darkred;
 }
