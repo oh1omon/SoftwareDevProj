@@ -508,7 +508,7 @@ async function runGame(plans, Display) {
   let lives = 5;
   for (let level = 0; level < plans.length && lives > 0; ) {
     document.getElementById("level").innerText = `leveL: ${level + 1}`;
-    document.getElementById("lives").innerText = `${lives} :Lives`;
+    document.getElementById("lives").innerText = `${lives - 1} :Lives`;
     // document.getElementById("restart").innerText = "restart game";
     let status = await runLevel(new Level(plans[level]), Display);
     if (status == "won") level++;
