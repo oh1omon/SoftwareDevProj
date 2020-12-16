@@ -2,39 +2,105 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Run for your life!</title>
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bangers&family=Gudea:wght@400;700&display=swap"
-      rel="stylesheet"
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Run for your life!</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/ico" href="./assets/icons/favicon.ico" />
+    <!--CSS anchor area-->
+    <link rel="stylesheet" href="./styles/styles.css" type="text/css" />
   </head>
   <body>
-    <section>
-      <h1 id="message">Run for your life!</h1>
-      <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">
-        start game
-      </button>
-      <h4 id="level"></h4>
-      <h4 id="lives"></h4>
-      <!-- <p>MESSAGE: <span id="message"></span></p> -->
+    <section id="wrapper">
+      <div class="game-score">
+        <h4 id="level"></h4>
+        <div class="spacer"></div>
+        <h4 id="lives"></h4>
+      </div>
+      <div class="message-container">
+        <h2 id="message"></h2>
+      </div>
+      <div class="banner-container">
+        <div class="banner">
+          <p>the most offensive ga¥... me</p>
+          <p>v</p>
+          <p>e</p>
+          <p>r</p>
+        </div>
+      </div>
+      <div class="content">
+        <div class="button">
+          <button onclick="loadGame()">
+            <div class="btn-inside">
+              <img src="assets/icons/play-censore.svg" alt="play icon" />
+              <p>play</p>
+            </div>
+          </button>
+        </div>
+        <div class="score-container">
+          <div class="score-content">
+            <div class="align-end">
+              <p>coins</p>
+            </div>
+            <div id="scores">
+              <p id="bosses">000</p>
+              <p id="coins"></p>
+            </div>
+            <div class="align-start">
+              <p>bosses</p>
+            </div>
+          </div>
+        </div>
+        <div class="icon-wrapper">
+          <div class="icon-container">
+            <a href="#"><img src="assets/icons/ig.svg" alt="instagram" /></a>
+            <div class="spacer"></div>
+            <a
+              class="git-link"
+              href="https://github.com/oh1omon/SoftwareDevProj"
+              ><img src="assets/icons/git.svg" alt="github"
+            /></a>
+            <div class="spacer"></div>
+            <a href="#"><img src="assets/icons/email.svg" alt="email" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="ext">
+        <div class="settings">
+          <a href="#"
+            ><img src="assets/icons/settings-censored.svg" alt="settings"
+          /></a>
+        </div>
+        <div class="about">
+          <a href="#"><img src="assets/icons/about.svg" alt="about us" /></a>
+        </div>
+      </div>
+      <div class="restart-container">
+        <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">
+          restart game
+        </button>
+        <button id="reload" onclick="window.location.reload()">
+          main menu
+        </button>
+      </div>
     </section>
-    <!-- <div>        
-        <p><span id="message"></span></p>
-    </div> -->
+    <section class="game-overlay"></section>
     <!-- sounds -->
     <audio src="./assets/audio/bg-music.mp3" id="bg-music"></audio>
     <!-- <audio src="./assets/audio/boing.mp3" id="boing"></audio> -->
     <audio src="./assets/audio/coin.mp3" id="coin-sound"></audio>
     <!-- <audio src="./assets/audio/win.mp3" id="win-sound"></audio> -->
     <audio src="./assets/audio/game-over.mp3" id="game-over"></audio>
+    <!--Scripts area-->
     <script src="levels.js"></script>
     <script src="game.js"></script>
+    <script src="landing.js"></script>
     <script>
-      let display = new DOMDisplay(document.body, simpleLevel);
-      display.syncState(State.start(simpleLevel));
+      // let display = new DOMDisplay(document.body, simpleLevel);
+      // display.syncState(State.start(simpleLevel));
       // runGame(GAME_LEVELS, DOMDisplay);
     </script>
   </body>
