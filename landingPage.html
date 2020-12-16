@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Run for your life!</title>
     <!--CSS anchor area-->
-    <link rel="stylesheet" href="/css/landing.css" type="text/css" />
+    <link rel="stylesheet" href="./css/landing.css" type="text/css" />
   </head>
   <body>
     <section id="wrapper">
@@ -71,16 +71,26 @@
     </section>
     <section id="disNone" class="game-overlay">
       <h1 id="message">Run for your life!</h1>
-      <div class="game-window"></div>
       <!--      <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">-->
       <!--        start game-->
       <!--      </button>-->
       <h4 id="level"></h4>
       <h4 id="lives"></h4>
     </section>
+    <!-- sounds -->
+    <audio src="./assets/audio/bg-music.mp3" id="bg-music"></audio>
+    <!-- <audio src="./assets/audio/boing.mp3" id="boing"></audio> -->
+    <audio src="./assets/audio/coin.mp3" id="coin-sound"></audio>
+    <!-- <audio src="./assets/audio/win.mp3" id="win-sound"></audio> -->
+    <audio src="./assets/audio/game-over.mp3" id="game-over"></audio>
     <!--Scripts area-->
     <script src="levels.js"></script>
     <script src="game.js"></script>
     <script src="landing.js"></script>
+    <script>
+      // let display = new DOMDisplay(document.body, simpleLevel);
+      // display.syncState(State.start(simpleLevel));
+      // runGame(GAME_LEVELS, DOMDisplay);
+    </script>
   </body>
 </html>

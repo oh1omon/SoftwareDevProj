@@ -244,6 +244,7 @@ DOMDisplay.prototype.syncState = function (state) {
   this.actorLayer = drawActors(state.actors);
   this.dom.appendChild(this.actorLayer);
   this.dom.className = `game ${state.status}`;
+  // this.dom.id = "disNone";
   this.scrollPlayerIntoView(state);
 };
 
@@ -442,10 +443,7 @@ function runAnimation(frameFunc) {
 
 // runLevel function takes a level object and display constructor and returns a promise
 function runLevel(level, Display) {
-  let display = new Display(
-    document.getElementsByClassName("game-window")[0],
-    level
-  );
+  let display = new Display(document.body, level);
   let state = State.start(level);
   let ending = 1;
   let running = "yes";
@@ -495,23 +493,8 @@ function runLevel(level, Display) {
       }
     }
 
-    state = state.update(time, arrowKeys);
-    display.syncState(state);
-    if (state.status == "playing") {
-      return true;
-    } else if (ending > 0) {
-      ending -= time;
-      return true;
-    } else {
-      display.clear();
-      window.removeEventListener("keydown", escHandler);
-      arrowKeys.unregister();
-      resolve(state.status);
-      return false;
-    }
+    runAnimation(frame);
   });
-
-  runAnimation(frame);
 }
 
 function trackKeys(keys) {
@@ -522,41 +505,67 @@ function trackKeys(keys) {
       down[event.key] = event.type == "keydown";
       event.preventDefault();
     }
-
-    window.addEventListener("keydown", track);
-    window.addEventListener("keyup", track);
-    down.unregister = () => {
-      window.removeEventListener("keydown", track);
-      window.removeEventListener("keyup", track);
-    };
-    return down;
   }
 
-  // if player dies --> restart current level
-  // if level finished --> move to next level
+  window.addEventListener("keydown", track);
+  window.addEventListener("keyup", track);
 
-  async function runGame(plans, Display) {
-    let lives = 5;
-    for (let level = 0; level < plans.length && lives > 0; ) {
-      document.getElementById("level").innerText = `Level ${level + 1}`;
-      document.getElementById("lives").innerText = `Lives: ${lives}`;
-      // document.getElementById("restart").innerText = "restart game";
-      let status = await runLevel(new Level(plans[level]), Display);
-      if (status == "won") level++;
-      else lives--;
-    }
-    if (lives > 0) {
-      document.getElementById("level").innerText = ``;
-      document.getElementById("lives").innerText = ``;
-      // document.getElementById("restart").innerText = "restart game";
-      document.getElementById("message").innerText = "YOU ARE IMPROVING!";
-    } else {
-      document.getElementById("message").innerText = "YOU SUCK!";
-      // game over sound
-      gameOverSound.play();
-      // document.getElementById("restart").innerText = "restart game";
-    }
+  down.unregister = () => {
+    window.removeEventListener("keydown", track);
+    window.removeEventListener("keyup", track);
+  };
+  return down;
+}
+
+// if player dies --> restart current level
+// if level finished --> move to next level
+async function runGame(plans, Display) {
+  let lives = 5;
+  for (let level = 0; level < plans.length && lives > 0; ) {
+    document.getElementById("level").innerText = `Level: ${level + 1}`;
+    document.getElementById("lives").innerText = `Lives: ${lives}`;
+    // document.getElementById("restart").innerText = "restart game";
+    let status = await runLevel(new Level(plans[level]), Display);
+    if (status == "won") level++;
+    else lives--;
   }
+  if (lives > 0) {
+    console.log("You're not as bad as I thought.");
+    document.getElementById("level").innerText = ``;
+    document.getElementById("lives").innerText = ``;
+    // document.getElementById("restart").innerText = "restart game";
+    document.getElementById("message").innerText = "YOU ARE IMPROVING!";
+  } else {
+    console.log("Wow, you're really not good at this.");
+    document.getElementById("message").innerText = "YOU SUCK!";
+    // document.getElementById("restart").innerText = "restart game";
+  }
+  // game over sound
+  gameOverSound.play();
 }
 
 // runGame(GAME_LEVELS, DOMDisplay);
+
+//Setting the coins score
+(function () {
+  if (!localStorage.getItem("coinScore")) {
+    localStorage.setItem("coinScore", "0");
+  }
+  if (localStorage.getItem("coinScore") >= 1000) {
+    document.getElementById("coins").innerText = `${
+      localStorage.getItem("coinScore") / 1000
+    }K`;
+  } else if (localStorage.getItem("coinScore") >= 100) {
+    document.getElementById("coins").innerText = `${localStorage.getItem(
+      "coinScore"
+    )}`;
+  } else if (localStorage.getItem("coinScore") >= 10) {
+    document.getElementById("coins").innerText = `0${localStorage.getItem(
+      "coinScore"
+    )}`;
+  } else {
+    document.getElementById("coins").innerText = `00${localStorage.getItem(
+      "coinScore"
+    )}`;
+  }
+})();

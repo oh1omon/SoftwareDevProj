@@ -267,14 +267,19 @@ button img {
   overflow: hidden;
   /* max-width: 100%; */
   /* max-height: auto; */
-  max-width: 1000px;
-  max-height: 900px;
+  max-width: 70vw;
+  max-height: 90vh;
+  top: 5rem;
+  left: 15vw;
   position: absolute;
-  margin: 5rem;
   border: 2px solid black;
 }
 .game-window {
   display: flex;
   justify-content: center;
   align-content: center;
+}
+
+.monster {
+  background: darkred;
 }
