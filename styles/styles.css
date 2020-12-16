@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap");
 
+:root {
+  --background-color: #363636;
+  --pink-color: #ec058e;
+  --blue-color: #62bbc1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +13,7 @@
 
 body {
   font-family: "Oswald", sans-serif;
-  background-color: #363636;
+  background-color: var(--background-color);
   height: 100vh;
   width: 100vw;
 }
@@ -25,7 +31,7 @@ h4 {
 }
 
 #wrapper {
-  background-color: #363636;
+  background-color: var(--background-color);
   width: 100%;
   height: 100%;
   display: grid;
@@ -55,7 +61,7 @@ h4 {
 }
 
 .settings {
-  background-color: #ec058e;
+  background-color: var(--pink-color);
 }
 
 .settings img {
@@ -64,7 +70,7 @@ h4 {
 }
 
 .about {
-  background-color: #62bbc1;
+  background-color: var(--blue-color);
 }
 
 .settings a,
@@ -118,8 +124,8 @@ h4 {
 button {
   font-family: inherit;
   text-transform: uppercase;
-  background-color: #62bbc1;
-  color: #363636;
+  background-color: var(--blue-color);
+  color: var(--background-color);
   font-size: 64px;
   border: 0;
   outline: 0;
@@ -228,10 +234,10 @@ button img {
   height: 50%;
 }
 #level {
-  color: #ec058e;
+  color: var(--pink-color);
 }
 #lives {
-  color: #62bbc1;
+  color: var(--blue-color);
 }
 #level,
 #lives {
@@ -248,7 +254,7 @@ button img {
   font-size: 72px;
 }
 #message {
-  color: white;
+  color: #fff;
 }
 .restart-container {
   grid-row: 4;
@@ -281,7 +287,7 @@ table {
 }
 
 .wall {
-  background: white;
+  background: #fff;
   border: 0.25px solid black;
 }
 
@@ -291,7 +297,7 @@ table {
 
 .coin {
   background: rgb(241, 229, 89);
-  border: 1px solid black;
+  border: 1px solid #000;
   border-radius: 50%;
 }
 
@@ -304,7 +310,7 @@ table {
 }
 
 .won .player {
-  box-shadow: -4px -7px 8px white, 4px -7px 8px white;
+  box-shadow: -4px -7px 8px #fff, 4px -7px 8px #fff;
 }
 
 .game {
@@ -316,7 +322,7 @@ table {
   top: 7rem;
   left: 15vw;
   position: absolute;
-  border: 2px solid black;
+  border: 2px solid #000;
 }
 .game-window {
   display: flex;
@@ -325,5 +331,5 @@ table {
 }
 
 .monster {
-  background: darkred;
+  background: #8b0000;
 }

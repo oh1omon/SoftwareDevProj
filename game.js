@@ -545,9 +545,7 @@ async function runGame(plans, Display) {
   gameOverSound.play();
 }
 
-// runGame(GAME_LEVELS, DOMDisplay);
-
-//Setting the coins score
+//Setting the coins (and in a future monsters) score
 (function () {
   if (!localStorage.getItem("coinScore")) {
     localStorage.setItem("coinScore", "0");
