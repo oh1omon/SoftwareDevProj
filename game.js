@@ -393,7 +393,10 @@ function runAnimation(frameFunc) {
 
 // runLevel function takes a level object and display constructor and returns a promise
 function runLevel(level, Display) {
-  let display = new Display(document.body, level);
+  let display = new Display(
+    document.getElementsByClassName("game-window")[0],
+    level
+  );
   let state = State.start(level);
   let ending = 1;
   let running = "yes";
@@ -467,7 +470,7 @@ async function runGame(plans, Display) {
   for (let level = 0; level < plans.length && lives > 0; ) {
     document.getElementById("level").innerText = `Level ${level + 1}`;
     document.getElementById("lives").innerText = `Lives: ${lives}`;
-    document.getElementById("restart").innerText = "restart game";
+    // document.getElementById("restart").innerText = "restart game";
     let status = await runLevel(new Level(plans[level]), Display);
     if (status == "won") level++;
     else lives--;
@@ -475,11 +478,11 @@ async function runGame(plans, Display) {
   if (lives > 0) {
     document.getElementById("level").innerText = ``;
     document.getElementById("lives").innerText = ``;
-    document.getElementById("restart").innerText = "restart game";
+    // document.getElementById("restart").innerText = "restart game";
     document.getElementById("message").innerText = "YOU ARE IMPROVING!";
   } else {
     document.getElementById("message").innerText = "YOU SUCK!";
-    document.getElementById("restart").innerText = "restart game";
+    // document.getElementById("restart").innerText = "restart game";
   }
 }
 
@@ -488,11 +491,13 @@ async function runGame(plans, Display) {
 const loadGame = () => {
   document.getElementById("wrapper").id = "disNone";
   document.getElementsByClassName("game-overlay")[0].id = "";
-  let display = new DOMDisplay(
-    document.getElementsByClassName("game-window")[0],
-    simpleLevel
-  );
-  display.syncState(State.start(simpleLevel));
+  //NOT NEEDED ANYMORE, SINCE FUNCTION RUNGAME EXECUTES ALL OF THIS CODE BY ITSELF
+  // let display = new DOMDisplay(
+  //   document.getElementsByClassName("game-window")[0],
+  //   simpleLevel
+  // );
+  // display.syncState(State.start(simpleLevel));
+  runGame(GAME_LEVELS, DOMDisplay);
 };
 
 (function () {

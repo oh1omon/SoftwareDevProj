@@ -58,7 +58,8 @@ h1 {
 }
 
 .settings img {
-  width: 28px;
+  width: 36px;
+  /*  width: 28px;*/
 }
 
 .about {
@@ -140,7 +141,8 @@ button {
 }
 
 button img {
-  height: 90px;
+  /*height: 90px;*/
+  height: 64px;
 }
 
 .score-container {
@@ -267,4 +269,9 @@ button img {
   position: absolute;
   margin: 10rem;
   border: 2px solid black;
+}
+.game-window {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
