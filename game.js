@@ -7,7 +7,7 @@ let gameOverSound = document.getElementById("game-over");
 
 // reading a level
 
-var Level = class Level {
+let Level = class Level {
   constructor(plan) {
     let rows = plan
       .trim()
@@ -28,7 +28,7 @@ var Level = class Level {
   }
 };
 
-var State = class State {
+let State = class State {
   constructor(level, actors, status) {
     this.level = level;
     this.actors = actors;
@@ -46,7 +46,7 @@ var State = class State {
 
 // Implementing Actor objects ro represent the current position and state of a given moving element in the game
 
-var Vec = class Vec {
+let Vec = class Vec {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -63,7 +63,7 @@ var Vec = class Vec {
 
 // Player actor
 
-var Player = class Player {
+let Player = class Player {
   constructor(pos, speed) {
     this.pos = pos;
     this.speed = speed;
@@ -82,7 +82,7 @@ Player.prototype.size = new Vec(1, 1.75);
 
 // Lava actor creation
 
-var Lava = class Lava {
+let Lava = class Lava {
   constructor(pos, speed, reset) {
     this.pos = pos;
     this.speed = speed;
@@ -108,7 +108,7 @@ Lava.prototype.size = new Vec(1, 1);
 
 // Coin actor creation
 
-var Coin = class Coin {
+let Coin = class Coin {
   constructor(pos, basePos, wobble) {
     this.pos = pos;
     this.basePos = basePos;
@@ -193,7 +193,7 @@ function elt(name, attrs, ...children) {
   return dom;
 }
 
-var DOMDisplay = class DOMDisplay {
+let DOMDisplay = class DOMDisplay {
   constructor(parent, level) {
     this.dom = elt("div", { class: "game" }, drawGrid(level));
     this.actorLayer = null;
@@ -205,7 +205,7 @@ var DOMDisplay = class DOMDisplay {
   }
 };
 
-var scale = 20;
+let scale = 20;
 
 function drawGrid(level) {
   return elt(
@@ -276,13 +276,13 @@ DOMDisplay.prototype.scrollPlayerIntoView = function (state) {
 //************* Motion and collision Part ******************/
 
 Level.prototype.touches = function (pos, size, type) {
-  var xStart = Math.floor(pos.x);
-  var xEnd = Math.ceil(pos.x + size.x);
-  var yStart = Math.floor(pos.y);
-  var yEnd = Math.ceil(pos.y + size.y);
+  let xStart = Math.floor(pos.x);
+  let xEnd = Math.ceil(pos.x + size.x);
+  let yStart = Math.floor(pos.y);
+  let yEnd = Math.ceil(pos.y + size.y);
 
-  for (var y = yStart; y < yEnd; y++) {
-    for (var x = xStart; x < xEnd; x++) {
+  for (let y = yStart; y < yEnd; y++) {
+    for (let x = xStart; x < xEnd; x++) {
       let isOutside = x < 0 || x >= this.width || y < 0 || y >= this.height;
       let here = isOutside ? "wall" : this.rows[y][x];
       if (here == type) return true;
@@ -416,10 +416,16 @@ function trackKeys(keys) {
 
   window.addEventListener("keydown", track);
   window.addEventListener("keyup", track);
+
+  down.unregister = () => {
+    window.removeEventListener("keydown", track);
+    window.removeEventListener("keyup", track);
+  };
+
   return down;
 }
 
-const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
+// const arrowKeys = trackKeys(["ArrowLeft", "ArrowRight", "ArrowUp"]);
 
 // running/pausing the game and game over
 
@@ -494,26 +500,6 @@ function runLevel(level, Display) {
 
     runAnimation(frame);
   });
-}
-
-function trackKeys(keys) {
-  let down = Object.create(null);
-
-  function track(event) {
-    if (keys.includes(event.key)) {
-      down[event.key] = event.type == "keydown";
-      event.preventDefault();
-    }
-  }
-
-  window.addEventListener("keydown", track);
-  window.addEventListener("keyup", track);
-
-  down.unregister = () => {
-    window.removeEventListener("keydown", track);
-    window.removeEventListener("keyup", track);
-  };
-  return down;
 }
 
 // if player dies --> restart current level
