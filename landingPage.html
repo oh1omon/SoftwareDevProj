@@ -13,6 +13,14 @@
   </head>
   <body>
     <section id="wrapper">
+      <div class="game-score">
+        <h4 id="level"></h4>
+        <div class="spacer"></div>
+        <h4 id="lives"></h4>
+      </div>
+      <div class="message-container">
+        <h2 id="message"></h2>
+      </div>
       <div class="banner-container">
         <div class="banner">
           <p>the most offensive ga¥... me</p>
@@ -68,15 +76,16 @@
           <a href="#"><img src="assets/icons/about.svg" alt="about us" /></a>
         </div>
       </div>
+      <div class="restart-container">
+        <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">
+          restart game
+        </button>
+        <button id="reload" onclick="window.location.reload()">
+          main menu
+        </button>
+      </div>
     </section>
-    <section id="disNone" class="game-overlay">
-      <h1 id="message">Run for your life!</h1>
-      <!--      <button id="restart" onclick="runGame(GAME_LEVELS, DOMDisplay)">-->
-      <!--        start game-->
-      <!--      </button>-->
-      <h4 id="level"></h4>
-      <h4 id="lives"></h4>
-    </section>
+    <section class="game-overlay"></section>
     <!-- sounds -->
     <audio src="./assets/audio/bg-music.mp3" id="bg-music"></audio>
     <!-- <audio src="./assets/audio/boing.mp3" id="boing"></audio> -->

@@ -244,7 +244,6 @@ DOMDisplay.prototype.syncState = function (state) {
   this.actorLayer = drawActors(state.actors);
   this.dom.appendChild(this.actorLayer);
   this.dom.className = `game ${state.status}`;
-  // this.dom.id = "disNone";
   this.scrollPlayerIntoView(state);
 };
 
@@ -522,8 +521,8 @@ function trackKeys(keys) {
 async function runGame(plans, Display) {
   let lives = 5;
   for (let level = 0; level < plans.length && lives > 0; ) {
-    document.getElementById("level").innerText = `Level: ${level + 1}`;
-    document.getElementById("lives").innerText = `Lives: ${lives}`;
+    document.getElementById("level").innerText = `leveL: ${level + 1}`;
+    document.getElementById("lives").innerText = `${lives} :Lives`;
     // document.getElementById("restart").innerText = "restart game";
     let status = await runLevel(new Level(plans[level]), Display);
     if (status == "won") level++;
@@ -538,6 +537,8 @@ async function runGame(plans, Display) {
   } else {
     console.log("Wow, you're really not good at this.");
     document.getElementById("message").innerText = "YOU SUCK!";
+    document.getElementsByClassName("message-container")[0].style.display =
+      "flex";
     // document.getElementById("restart").innerText = "restart game";
   }
   // game over sound
